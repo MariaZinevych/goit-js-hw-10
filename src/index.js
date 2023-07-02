@@ -1,4 +1,17 @@
-import API from './cat-api';
+const API_KEY =
+  'live_7ctoNlYDqvRmUrjGDIjzkXX0AcLi54Bj3E5E1IL8zd4wg4HCVIG5ZdJbaWtVOXLA';
+
+function fetchBreeds() {
+  const url = `https://api.thecatapi.com/v1/breeds/`;
+
+  return fetch(url, {
+    headers: {
+      'x-api-key': API_KEY,
+    },
+  }).then(response => {
+    return response.json();
+  });
+}
 
 const onSelect = document.querySelector('.breed-select');
 
@@ -6,13 +19,14 @@ function arrow(arr) {
   for (let i = 0; i < arr.length; i += 1) {
     let value = arr[i].id;
     let text = arr[i].name;
-  }
 
-  const elements = document.createElement('option');
-  elements.value = value;
-  elements.textContent = text;
-  onSelect.appendChild(elements);
+    const elements = document.createElement('option');
+    elements.value = value;
+    elements.textContent = text;
+    onSelect.appendChild(elements);
+  }
 }
+
 addCats();
 
 function addCats() {
@@ -22,8 +36,6 @@ function addCats() {
 }
 
 // onSelect.addEventListener('change', onSearch);
-
-// onSelect.addEventListener('change', onSelectView);
 
 // // API Fetch & Add options in select
 // getOptions();

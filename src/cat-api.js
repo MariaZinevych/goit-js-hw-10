@@ -1,5 +1,5 @@
 const API_KEY =
-  'llive_7ctoNlYDqvRmUrjGDIjzkXX0AcLi54Bj3E5E1IL8zd4wg4HCVIG5ZdJbaWtVOXLA';
+  'live_7ctoNlYDqvRmUrjGDIjzkXX0AcLi54Bj3E5E1IL8zd4wg4HCVIG5ZdJbaWtVOXLA';
 
 function fetchBreeds() {
   const url = `https://api.thecatapi.com/v1/breeds/`;
