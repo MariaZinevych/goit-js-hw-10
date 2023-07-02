@@ -1,19 +1,27 @@
-// import API from './cat-api';
-// import getRefs from './get-refs';
-// import getOptions from './get-options';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import API from './cat-api';
 
-const API_KEY =
-  'live_7ctoNlYDqvRmUrjGDIjzkXX0AcLi54Bj3E5E1IL8zd4wg4HCVIG5ZdJbaWtVOXLA';
+const onSelect = document.querySelector('.breed-select');
 
-function fetchBreeds() {
-  const url = 'https://api.thecatapi.com/v1/breeds';
-  return fetch(url, { headers: { 'x-api-key': API_KEY } }).then(response => {
-    return response.json();
-  });
+function arrow(arr) {
+  for (let i = 0; i < arr.length; i += 1) {
+    let value = arr[i].id;
+    let text = arr[i].name;
+  }
+
+  const elements = document.createElement('option');
+  elements.value = value;
+  elements.textContent = text;
+  onSelect.appendChild(elements);
+}
+addCats();
+
+function addCats() {
+  fetchBreeds()
+    .then(arrow)
+    .catch(error => console.log('error'));
 }
 
-// const onSelect = document.querySelector('.breed-select');
+// onSelect.addEventListener('change', onSearch);
 
 // onSelect.addEventListener('change', onSelectView);
 
@@ -103,3 +111,82 @@ function fetchBreeds() {
 //     }
 //   });
 // }
+// const API_KEY =
+//
+
+// // fetching all cat's
+// function fetchBreeds() {
+//   const url = `https://api.thecatapi.com/v1/breeds/`;
+
+//   return fetch(url, {
+//     headers: {
+//       'x-api-key': API_KEY,
+//     },
+//   }).then(response => {
+//     return response.json();
+//   });
+// }
+
+// // fetching cat by id(breed name)
+// function fetchCatByBreed(breedId) {
+//   return fetch(
+//     `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}&api_key=${API_KEY}`
+//   ).then(response => response.json());
+// }
+
+// export default { fetchBreeds, fetchCatByBreed };
+
+// function getRefs() {
+//   return {
+//     select: document.querySelector('.breed-select'),
+//     catContainer: document.querySelector('.cat-info'),
+//     loadingMessage: document.querySelector('.loader'),
+//     errorMessage: document.querySelector('.error'),
+//     // closeButton: document.querySelector('.close-btn'),
+//     // content: document.querySelector('.content'),
+//     // container: document.querySelector('.container'),
+//     // selectMenu: document.querySelector('.ss-main'),
+//   };
+// }
+
+// export default getRefs;
+// import API from './cat-api';
+// import Notiflix from 'notiflix';
+// import { Report } from 'notiflix/build/notiflix-notify-aio';
+
+// // fetching API and adding <options> in select
+// function createOptions() {
+//   API.fetchBreeds()
+//     .then(getAllIds)
+//     .catch(error => {
+//       if (error) {
+//         showError();
+//       }
+//     });
+// }
+
+// // Add all ids in select ".breed-select"
+// function getAllIds(arr) {
+//   const breedSelect = document.querySelector('.breed-select');
+
+//   for (let i = 0; i < arr.length; i += 1) {
+//     let value = arr[i].id;
+//     let text = arr[i].name;
+
+//     const optionsElement = document.createElement('option');
+//     optionsElement.value = value;
+//     optionsElement.textContent = text;
+//     breedSelect.appendChild(optionsElement);
+//   }
+// }
+
+// //Show error
+// function showError() {
+//   Notiflix.Report.failure(
+//     'Error',
+//     'Oops! Something went wrong! Try reloading the page!',
+//     'Try Again'
+//   );
+// }
+
+// export default createOptions;
