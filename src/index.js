@@ -18,6 +18,7 @@ function fetchBreeds() {
 const onSelect = document.querySelector('.breed-select');
 const onCatInfo = document.querySelector('.cat-info');
 const onloader = document.querySelector('.loader');
+
 const onError = document.querySelector('.error');
 
 function arrow(arr) {
@@ -35,10 +36,12 @@ function arrow(arr) {
 addCats();
 
 function addCats() {
+  onloader.style.display = 'block';
   fetchBreeds()
     .then(arrow)
     .catch(error => {
       if (error) showError();
+      onloader.style.display = 'none';
     });
 }
 
@@ -54,6 +57,7 @@ onSelect.addEventListener('change', onSearch);
 
 function onSearch(e) {
   const valueId = e.target.value;
+  onloader.style.display = 'block';
   fetch(
     `https://api.thecatapi.com/v1/images/search?breed_ids=${valueId}&api_key=${API_KEY}`
   )
@@ -63,9 +67,11 @@ function onSearch(e) {
     .then(data => {
       onCatInfo.innerHTML = '';
       markUp(data);
+      onloader.style.display = 'none';
     })
     .catch(error => {
       if (error) showError();
+      onloader.style.display = 'none';
     });
 }
 function markUp(arr) {
@@ -84,3 +90,4 @@ function markUp(arr) {
 
   onCatInfo.insertAdjacentHTML('beforeend', markUp);
 }
+onError.style.display = 'none';
