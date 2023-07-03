@@ -17,6 +17,8 @@ function fetchBreeds() {
 
 const onSelect = document.querySelector('.breed-select');
 const onCatInfo = document.querySelector('.cat-info');
+const onloader = document.querySelector('.loader');
+const onError = document.querySelector('.error');
 
 function arrow(arr) {
   for (let i = 0; i < arr.length; i += 1) {
